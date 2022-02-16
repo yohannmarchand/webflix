@@ -5,6 +5,7 @@ import Genre from "./Genre";
 import useStyles from "./Movie.style";
 import Rating from "./Rating";
 import BackButton from "./BackButton";
+import HorizontalList from "./HorizontalList";
 
 function Movie() {
     let params = useParams();
@@ -35,8 +36,8 @@ function Movie() {
             <p>{movie["overview"]}</p>
             <p>Note du public</p>
             <Rating rate={movie["vote_average"]}/>
-            <p>Truc similaire</p>
-
+            <p>Films similaire</p>
+            <HorizontalList genres={movie["genre_ids"]} id={movie['id']}/>
         </div>
     );
 }

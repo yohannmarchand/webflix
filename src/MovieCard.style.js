@@ -8,6 +8,8 @@ const useStyles = createUseStyles({
         height: 200,
         width: 100,
         backgroundImage: ({ imageURL }) => `url(${imageURL})`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
         overflow: "hidden",
     },
     title: {
