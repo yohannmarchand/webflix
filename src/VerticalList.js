@@ -7,15 +7,15 @@ import useStyles from "./VerticalList.style";
 function VerticalList({ data, className }) {
     const classes = useStyles();
     return (
-        <ul className={classNames([classes.root, className])}>
+        <div className={classNames([classes.root, className])}>
             {data.map((entry) => (
-                <li key={entry.id} className={classes.item}>
+                <div key={entry.id} className={classes.item}>
                     <Link to={`/movies/${entry.id}`} className={classes.link}>
                         <MovieCard {...entry} />
                     </Link>
-                </li>
+                </div>
             ))}
-        </ul>
+        </div>
     );
 }
 
