@@ -1,5 +1,6 @@
 import data from "./data/data.json";
 import { useParams } from "react-router-dom";
+import Genre from "./Genre";
 
 function Movie() {
     let params = useParams();
@@ -18,9 +19,11 @@ function Movie() {
                     <p>Realisé par Yohann Marchand</p>
                     <p>Sortie le {movie["release_date"]}</p>
                     <p>XXX minute</p>
-                    {movie["genre"].map(genre => {
-                        <Genre/>
-                    })}
+                    <div>
+                        {movie["genre_ids"].map(genre => {
+                            return <Genre id={genre}/>
+                        })}
+                    </div>
                 </div>
             </div>
             <p>{movie["overview"]}</p>
