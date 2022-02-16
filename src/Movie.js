@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import Genre from "./Genre";
 
 import useStyles from "./Movie.style";
+import Rating from "./Rating";
 
 function Movie() {
     let params = useParams();
@@ -31,7 +32,7 @@ function Movie() {
             </div>
             <p>{movie["overview"]}</p>
             <p>Note du public</p>
-
+            <Rating rate={movie["vote_average"]}/>
             <p>Truc similaire</p>
 
         </div>
