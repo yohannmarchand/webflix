@@ -4,6 +4,7 @@ import Genre from "./Genre";
 
 import useStyles from "./Movie.style";
 import Rating from "./Rating";
+import BackButton from "./BackButton";
 
 function Movie() {
     let params = useParams();
@@ -16,6 +17,7 @@ function Movie() {
     console.log(movie)
     return (
         <div className={classes.root}>
+            <BackButton/>
             <div className={classes.container}>
                 <img src={imageURL}/>
                 <div>
