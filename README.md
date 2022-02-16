@@ -1,6 +1,6 @@
 # Les 4 saisons repository
 
-Exercice 2 & 3 :\
+Exercice 1 & 2 :\
 [les4saisons](https://github.com/yohannmarchand/les4saisons)
 
 
