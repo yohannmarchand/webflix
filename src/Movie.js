@@ -15,7 +15,6 @@ function Movie() {
     );
 
     const imageURL = `https://image.tmdb.org/t/p/w92${movie["poster_path"]}`;
-    console.log(movie)
     return (
         <div className={classes.root}>
             <BackButton/>
