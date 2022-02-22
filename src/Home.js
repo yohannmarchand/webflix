@@ -2,6 +2,7 @@ import {useCallback, useEffect, useState} from "react";
 import { useSearchParams } from "react-router-dom";
 import Input from "./Input";
 import VerticalList from "./VerticalList";
+import { useContext } from "react";
 
 import useStyles from "./Home.style";
 
@@ -10,6 +11,12 @@ function Home() {
     const [searchParams, setSearchParams] = useSearchParams();
     const [value, setValue] = useState(searchParams.get("q") || "");
     const [movies, setMovies] = useState([])
+    const [favCount, setFavCount] = useState(JSON.parse(localStorage.getItem('fav'))?.length | 0)
+
+    useEffect(() => {
+        console.log('test')
+    }, [localStorage.getItem('fav')])
+
     
     async function fetchMovies() {
         fetch(
@@ -36,6 +43,7 @@ function Home() {
     }, [value])
     return (
         <div className={classes.root}>
+            <div>Nombre de Favoris : { favCount }</div>
             <Input value={value} onChange={onChange} />
             <VerticalList className={classes.list} data={movies} />
         </div>

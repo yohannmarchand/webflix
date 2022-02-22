@@ -1,11 +1,10 @@
-import data from "./data/data.json"
-
 import useStyles from "./Movie.style";
 import Rating from "./Rating";
 import BackButton from "./BackButton";
 import HorizontalList from "./HorizontalList";
 import {useCallback, useEffect, useState} from "react";
 import { Navigate, useParams } from "react-router-dom";
+import FavButton from "./FavButton";
 import Genre from "./Genre";
 
 function Movie() {
@@ -39,6 +38,7 @@ function Movie() {
     return (
         <div className={classes.root}>
             <BackButton/>
+            <FavButton content='Add To Favorite' movie={movie}/>
             <div className={classes.container}>
                 <img className={classes.image} src={imageURL}/>
                 <div>
