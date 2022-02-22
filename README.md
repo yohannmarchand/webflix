@@ -3,6 +3,14 @@
 Exercice 1 & 2 :\
 [les4saisons](https://github.com/yohannmarchand/les4saisons)
 
+Exercices 3 & 4 
+
+[weblix@main](https://github.com/yohannmarchand/webflix)
+
+Exercices 5 & 6
+
+[weblix@exo5](https://github.com/yohannmarchand/webflix/tree/exo5)
+
 
 # Getting Started with Create React App
 
