@@ -1,4 +1,5 @@
 import {useCallback, useEffect, useState} from "react";
+import { useSearchParams } from "react-router-dom";
 import Input from "./Input";
 import VerticalList from "./VerticalList";
 
@@ -6,10 +7,10 @@ import useStyles from "./Home.style";
 
 function Home() {
     const classes = useStyles();
-    const [value, setValue] = useState("");
-    const onChange = (event) => setValue(event.target.value);
-
+    const [searchParams, setSearchParams] = useSearchParams();
+    const [value, setValue] = useState(searchParams.get("q") || "");
     const [movies, setMovies] = useState([])
+    
     async function fetchMovies() {
         fetch(
             !value
@@ -21,6 +22,14 @@ function Home() {
             })
         }).catch(e => console.log(e))
     }
+
+    const onChange = useCallback(
+        (event) => {
+            setValue(event.target.value);
+            setSearchParams(event.target.value ? { q: event.target.value } : {});
+        },
+        [setSearchParams]
+    );
 
     useEffect(() => {
         fetchMovies()
