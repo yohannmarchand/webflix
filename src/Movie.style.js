@@ -12,6 +12,11 @@ const useStyles = createUseStyles({
     genre: {
         display: "flex",
     },
+    image: {
+        marginRight: 30,
+        width: 'auto',
+        height: 200
+    }
 });
 
 export default useStyles;

@@ -1,12 +1,10 @@
-import  data from './data/data.json'
 import useStyles from "./Genre.style";
 
-function Genre({ id }) {
+function Genre({ name }) {
     const classes = useStyles()
-    const genre = data.genres[id]
     return (
         <div className={classes.root}>
-            { genre }
+            { name }
         </div>
     );
 }

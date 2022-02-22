@@ -4,35 +4,60 @@ import useStyles from "./Movie.style";
 import Rating from "./Rating";
 import BackButton from "./BackButton";
 import HorizontalList from "./HorizontalList";
-import {useEffect, useState} from "react";
+import {useCallback, useEffect, useState} from "react";
 import { Navigate, useParams } from "react-router-dom";
+import Genre from "./Genre";
 
 function Movie() {
-    let params = useParams();
+    const params = useParams();
     const classes = useStyles();
-    const movie = data.movies.find((movie) => movie.id.toString() === params.id);
+    const [movie, setMovie] = useState({})
+    const [imageURL, setImageURL] = useState('')
+    const [genres, setGenres] = useState([])
 
-    if (!movie) return <Navigate to="/" replace={true} />;
+    async function fecthMovie() {
+         await fetch(`${process.env.REACT_APP_API_URL}/movie/${params.id}?api_key=${process.env.REACT_APP_API_KEY}`)
+            .then(response => {
+                return response.json()
+            })
+            .then(data => {
+                setMovie(data)
+            })
+    }
 
-    const imageURL = `https://image.tmdb.org/t/p/w92${movie["poster_path"]}`;
+    useEffect( () => {
+        fecthMovie()
+    }, [params])
+
+    useEffect(() => {
+        if (movie.genres) {
+            setImageURL(`https://image.tmdb.org/t/p/w92${movie?.poster_path}`)
+            setGenres(movie.genres)
+        }
+    }, [movie])
+
     return (
         <div className={classes.root}>
             <BackButton/>
             <div className={classes.container}>
-                <img src={imageURL}/>
+                <img className={classes.image} src={imageURL}/>
                 <div>
-                    <h1>{ movie["title"] }</h1>
+                    <h1>{ movie?.title }</h1>
                     <p>Realisé par Yohann Marchand</p>
-                    <p>Sortie le {movie["release_date"]}</p>
+                    <p>Sortie le {movie?.release_date}</p>
                     <p>XXX minute</p>
-
+                    <div>
+                        {genres?.map(({name}) => {
+                            return <Genre key={name} name={name}/>
+                        })}
+                    </div>
                 </div>
             </div>
-            <p>{movie["overview"]}</p>
+            <p>{movie?.overview}</p>
             <p>Note du public</p>
-            <Rating rate={movie["vote_average"]}/>
+            <Rating rate={movie?.vote_average}/>
             <p>Films similaire</p>
-            <HorizontalList genres={movie["genre_ids"]} id={movie['id']}/>
+            <HorizontalList id={params.id}/>
         </div>
     );
 }
