@@ -1,30 +1,19 @@
-import data from "./data/data.json";
-import { useParams } from "react-router-dom";
-import Genre from "./Genre";
+import data from "./data/data.json"
 
 import useStyles from "./Movie.style";
 import Rating from "./Rating";
 import BackButton from "./BackButton";
 import HorizontalList from "./HorizontalList";
 import {useEffect, useState} from "react";
+import { Navigate, useParams } from "react-router-dom";
 
 function Movie() {
     let params = useParams();
     const classes = useStyles();
+    const movie = data.movies.find((movie) => movie.id.toString() === params.id);
 
-    let [movie, setMovie] = useState({})
-    async function fetchMovie() {
-        await fetch(`${process.env.REACT_APP_API_URL}/movie/${params.id}?api_key=${process.env.REACT_APP_API_KEY}`).then(response => {
-            response.json().then(data => {
-                setMovie(data)
-            })
-        }).catch(e => console.log(e))
-    }
+    if (!movie) return <Navigate to="/" replace={true} />;
 
-    useEffect(() => {
-        fetchMovie()
-    })
-    console.log(movie)
     const imageURL = `https://image.tmdb.org/t/p/w92${movie["poster_path"]}`;
     return (
         <div className={classes.root}>
