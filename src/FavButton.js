@@ -8,12 +8,11 @@ function FavButton({ content, movie }) {
     const favorites = useSelector((state) => state.favorites);
     const dispatch = useDispatch();
 
+
     function addToFav(event) {
         event.preventDefault();
-        if (!favorites.find(fav => fav.id === movie.id)) {
-            dispatch(favoritesSlice.actions.toggle({ movie }));
-        }
-
+        const id = movie.id
+        dispatch(favoritesSlice.actions.toggle({ id } ))
     }
 
     return (

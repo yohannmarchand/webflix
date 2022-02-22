@@ -3,11 +3,12 @@ import React, {useContext, useState} from "react";
 import VerticalList from "./VerticalList";
 import useStyles from "./Home.style";
 import { Navigate } from "react-router-dom";
+import {useSelector} from "react-redux";
 
 function Favorite() {
     const classes = useStyles()
 
-    const [favorites, setFavorites] = useState(JSON.parse(localStorage.getItem('fav')))
+    const favorites = useSelector((state) => state.favorites);
 
     return favorites ? (
         <div>

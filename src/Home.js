@@ -13,6 +13,7 @@ function Home() {
     const [movies, setMovies] = useState([])
     const favorites = useSelector((state) => state.favorites);
 
+    console.log(favorites)
     
     async function fetchMovies() {
         fetch(

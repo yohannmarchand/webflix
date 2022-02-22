@@ -19,6 +19,7 @@ import { favoritesSlice, moviesSlice } from "./slice";
 import { rootSaga } from "./sagas";
 import Home from "./Home";
 import Movie from "./Movie";
+import Favorite from "./Favourite";
 
 const persistConfig = {
     key: "root",
